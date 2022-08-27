@@ -5,10 +5,14 @@ import "./Expenses.css";
 import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
 
 function Expenses(props) {
-  const [enteredYear, setEnteredYear] = useState("2019");
+  const [enteredYear, setEnteredYear] = useState("2022");
   const setFilterYearHandler = (enteredYear) => {
     setEnteredYear(enteredYear);
   };
+
+  const filteredExpenses = props.items.filter(item => {
+    return item.date.getFullYear().toString() === enteredYear;
+  });
 
   return (
     <div>
@@ -17,9 +21,10 @@ function Expenses(props) {
           onChangeYear={setFilterYearHandler}
           selectedYear={enteredYear}
         />
-        {props.items.map((item) => {
+        {filteredExpenses.map((item) => {
           return (
             <ExpenseItem
+              key={item.id}
               title={item.title}
               amount={item.amount}
               date={item.date}
