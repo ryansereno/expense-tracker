@@ -20,7 +20,7 @@ const ExpenseForm = (props) => {
     event.preventDefault();
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
     props.onSaveExpenseData(expenseData); //onSaveExpensesData is defined in this components parent, and passed to this component as a prop, hance it being a method on prop. This allows data to be passed up to its parent- in this case NewExpense
